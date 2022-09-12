@@ -1,0 +1,21 @@
+---
+import "../styles/global.scss";
+
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+<link
+    rel="shortcut icon"
+    href="/mock-browser/favicon.ico"
+    type="image/x-icon"
+/>
+<meta name="generator" content={Astro.generator} />
+<script src="/browser.js" is:inline></script>
+<title>{title}</title>

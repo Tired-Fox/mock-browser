@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Poppins&display=swap');
+
+// Everything is scaled from H1
+$max-font: 8.5;
+$min-font: 4;
+
+//Width min and max breaks in rem
+$min-width: 50;
+$max-width: 380;
+
+@function font-clamp ($offset) {
+    // Calculated values
+    $min: $min-font - $offset;
+    $max: $max-font - $offset;
+
+    $slope: ($max-font - $min-font) / ($max-width - $min-width);
+    $inter: ((-1 * $min-width) * $slope)+$min;
+
+    //Return a clamp to be used for font-size
+    @return clamp(#{$min}rem, #{$inter}rem + #{$slope*100}vw, #{$max}rem);
+}
+
+// Create dynamic linear font sizes
+@for $i from 1 through 6 {
+
+    // Generate the headers font-sizes with a .5 linear offset from H1
+    h#{$i},
+    .h#{$i} {
+        font-size: font-clamp(($i - 1) * .5);
+    }
+}
+
+// These are more that .5 smaller than H6
+p,
+li,
+a,
+.normal {
+    font-size: font-clamp(2.5);
+}
+
+.small {
+    font-size: font-clamp(3.5);
+}
+
+em,
+span,
+strong,
+del,
+time {
+    font-size: inherit;
+    color: inherit;
+    font-family: inherit;
+}
+
+
+span {
+    font-weight: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
+}
+
+p,
+li,
+a {
+    font-family: 'Poppins', sans-serif;
+}
