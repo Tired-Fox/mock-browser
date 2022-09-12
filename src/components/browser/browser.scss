@@ -37,13 +37,14 @@ body {
     display: flex;
 }
 
-.left-ui {
+#left-ui {
     width: fit-content;
     min-width: 20%;
     padding: 20em;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     font-weight: bold;
 }
@@ -89,7 +90,36 @@ body {
     display: block !important;
 }
 
+.collapse {
+    width: 0% !important;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+
+    a {
+        transition: all .2s ease;
+        position: absolute;
+        bottom: 50%;
+        left: 1%;
+        font-size: 5rem;
+        font-weight: bold;
+        color: rgb(0, 0, 0, 0);
+
+        &:hover {
+            color: rgb(0, 0, 0, 1);
+        }
+    }
+}
+
 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
     display: inline-block;
     width: 100% !important;
     height: 100% !important;
@@ -97,4 +127,40 @@ iframe {
     border: none;
     border-radius: 1.2rem;
     background-color: white;
+}
+
+.left-controls {
+    transition: all .2s ease-in-out;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &>div {
+        display: flex;
+        gap: 20em;
+
+        a {
+            transition: all .2s ease;
+            text-decoration: none;
+            color: black;
+
+            &:hover {
+                color: rgb(180, 180, 180);
+            }
+        }
+    }
+
+    button {
+        transition: all .2s ease;
+        background-color: transparent;
+        width: fit-content;
+        height: fit-content;
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+            color: rgb(180, 180, 180);
+        }
+    }
 }
