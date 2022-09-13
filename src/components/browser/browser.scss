@@ -1,3 +1,5 @@
+@import '../../styles/extend.scss';
+
 body {
     height: 100%;
     background: rgb(2, 0, 36);
@@ -23,7 +25,7 @@ body {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 1.2rem;
 
-    padding: 2.2em;
+    padding: 4em;
 }
 
 .modern-ui {
@@ -35,18 +37,7 @@ body {
     opacity: 1;
 
     display: flex;
-}
-
-#left-ui {
-    width: fit-content;
-    min-width: 20%;
-    padding: 20em;
-
-    display: flex;
     flex-direction: column;
-    align-items: center;
-
-    font-weight: bold;
 }
 
 .content {
@@ -67,31 +58,12 @@ body {
     border-radius: 1.2rem;
 }
 
-#search-bar {
-    width: 90%;
-    height: fit-content;
-
-    border: none;
-    border-radius: 3em;
-    padding: 0.5em;
-    outline: none;
-
-    &:hover,
-    &:focus {
-        box-shadow: 2px 2px 8px -3px black;
-    }
-}
-
 .d-none {
     display: none !important;
 }
 
 .d-block {
     display: block !important;
-}
-
-.collapse {
-    width: 0% !important;
 }
 
 #content {
@@ -130,15 +102,18 @@ iframe {
 }
 
 .left-controls {
+    position: relative;
     transition: all .2s ease-in-out;
-    width: 100%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     &>div {
+        width: fit-content;
         display: flex;
-        gap: 20em;
+        gap: 60em;
+
 
         a {
             transition: all .2s ease;
@@ -150,17 +125,31 @@ iframe {
             }
         }
     }
+}
 
-    button {
-        transition: all .2s ease;
-        background-color: transparent;
-        width: fit-content;
-        height: fit-content;
-        cursor: pointer;
-        border: none;
+#left-ui {
+    overflow: hidden;
+    transition: all .4s;
+    width: 100%;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    gap: 25em;
 
-        &:hover {
-            color: rgb(180, 180, 180);
-        }
+    margin: 15em;
+}
+
+#search-bar {
+    transition: all .4s;
+    width: 20em;
+    padding: 0.5em;
+    height: fit-content;
+    border: none;
+    outline: none;
+    border-radius: 3em;
+
+    &:hover,
+    &:focus {
+        box-shadow: 2px 2px 8px -3px black;
     }
 }

@@ -1,0 +1,27 @@
+// Everything is scaled from H1
+$max-font: 8.5;
+$min-font: 4;
+
+//Width min and max breaks in rem
+$min-width: 50;
+$max-width: 380;
+
+@function font-clamp ($offset) {
+    // Calculated values
+    $min: $min-font - $offset;
+    $max: $max-font - $offset;
+
+    $slope: ($max-font - $min-font) / ($max-width - $min-width);
+    $inter: ((-1 * $min-width) * $slope)+$min;
+
+    //Return a clamp to be used for font-size
+    @return clamp(#{$min}rem, #{$inter}rem + #{$slope*100}vw, #{$max}rem);
+}
+
+@mixin fs-normal {
+    font-size: font-clamp(2.7) !important;
+}
+
+@mixin fs-small {
+    font-size: font-clamp(2.75) !important;
+}

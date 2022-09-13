@@ -8,7 +8,10 @@ const SEARCH = 'https://www.google.com/search?igu=1&ei=&q=';
 let leftMenu = true;
 
 function formatURI(uri) {
-    if (['.', '/'].some(value => uri.includes(value))) {
+    const urlRegex = new RegExp('(http:|https:)+[^\s]+');
+    if (urlRegex.test(uri)) {
+        return encodeURI(uri);
+    } else if (['.', '/', 'www'].some(value => uri.includes(value))) {
         return `http://${uri}`;
     } else {
         return `${SEARCH}${encodeURIComponent(uri)}`;
@@ -20,15 +23,6 @@ export function Content({ ...props }) {
     return (
         <>
             <div id="content">
-                <a href="#" id="content-open-leftMenu"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById('left-ui').classList.remove('d-none');
-                        document.getElementById('content-open-leftMenu').classList.add('d-none');
-                        leftMenu = true;
-                    }}>
-                    <i class="fa-regular fa-square-caret-right normal"></i>
-                </a>
                 <iframe
                     id="content-iframe"
                     src={props.url}>
@@ -44,28 +38,28 @@ export function LeftBar({ ...props }) {
     let url = '';
 
     return (
-        <div id="left-ui">
+        <div id="left-ui" class="expand">
             <div class="left-controls">
                 <div>
                     <a href="#" onClick={(e) => {
                         e.preventDefault();
                         history.back();
                     }}>
-                        <p>&lt;</p>
+                        <i class="fa-solid fa-arrow-left small"></i>
                     </a>
                     <a href="#" onClick={(e) => {
                         e.preventDefault();
                         history.forward();
                     }}>
-                        <p>&gt;</p>
+                        <i class="fa-solid fa-arrow-right small"></i>
+                    </a>
+                    <a id="lm-reload" href="#" onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById('content-iframe').src += '';
+                    }}>
+                        <i class="fa-solid fa-rotate-right small"></i>
                     </a>
                 </div>
-                <button onClick={(e) => {
-                    document.getElementById('left-ui').classList.add('d-none');
-                    document.getElementById('content-open-leftMenu').classList.remove('d-none');
-                }}>
-                    <i class="fa-regular fa-square-caret-left normal"></i>
-                </button>
             </div>
             <input
                 id="search-bar"
